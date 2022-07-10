@@ -19,6 +19,7 @@ controller:
   # Used for label app.kubernetes.io/component
   componentName: "jenkins-controller"
   image: "jenkins/jenkins"
+  tag: "latest"
   # tag: "2.346.1-jdk11"
   tagLabel: jdk11
   imagePullPolicy: "Always"
@@ -64,8 +65,8 @@ controller:
   #   - --httpPort=8080
   resources:
     requests:
-      cpu: "50m"
-      memory: "256Mi"
+      cpu: "1000m"
+      memory: "2048Mi"
     limits:
       cpu: "2000m"
       memory: "4096Mi"
@@ -120,7 +121,7 @@ controller:
   containerSecurityContext:
     runAsUser: 1000
     runAsGroup: 1000
-    readOnlyRootFilesystem: true
+    readOnlyRootFilesystem: false
     allowPrivilegeEscalation: false
   servicePort: 8080
   targetPort: 8080
@@ -242,6 +243,7 @@ controller:
     - workflow-aggregator:581.v0c46fa_697ffd
     - git:4.11.3
     - configuration-as-code:1429.v09b_044a_c93de
+    - blueocean-pipeline-editor:1.4.0
 
   # Set to false to download the minimum required version of all dependencies.
   installLatestPlugins: true
