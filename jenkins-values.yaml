@@ -66,8 +66,8 @@ controller:
   #   - --httpPort=8080
   resources:
     requests:
-      cpu: "100m"
-      memory: "1024Mi"
+      cpu: "50m"
+      memory: "512Mi"
     limits:
       cpu: "1000m"
       memory: "2048Mi"
@@ -154,26 +154,26 @@ controller:
       httpGet:
         path: '{{ default "" .Values.controller.jenkinsUriPrefix }}/login'
         port: http
-      periodSeconds: 10
-      timeoutSeconds: 5
-      failureThreshold: 12
+      periodSeconds: 30
+      timeoutSeconds: 10
+      failureThreshold: 15
     livenessProbe:
-      failureThreshold: 5
+      failureThreshold: 15
       httpGet:
         path: '{{ default "" .Values.controller.jenkinsUriPrefix }}/login'
         port: http
-      periodSeconds: 10
-      timeoutSeconds: 5
+      periodSeconds: 30
+      timeoutSeconds: 10
       # If Startup Probe is not supported on your Kubernetes cluster, you might want to use "initialDelaySeconds" instead.
       # It delays the initial liveness probe while Jenkins is starting
       # initialDelaySeconds: 60
     readinessProbe:
-      failureThreshold: 3
+      failureThreshold: 15
       httpGet:
         path: '{{ default "" .Values.controller.jenkinsUriPrefix }}/login'
         port: http
-      periodSeconds: 10
-      timeoutSeconds: 5
+      periodSeconds: 30
+      timeoutSeconds: 10
       # If Startup Probe is not supported on your Kubernetes cluster, you might want to use "initialDelaySeconds" instead.
       # It delays the initial readyness probe while Jenkins is starting
       # initialDelaySeconds: 60
@@ -607,11 +607,11 @@ agent:
   runAsGroup:
   resources:
     requests:
-      cpu: "1000m"
-      memory: "1024Mi"
+      cpu: "512m"
+      memory: "512Mi"
     limits:
-      cpu: "2000m"
-      memory: "2048Mi"
+      cpu: "512m"
+      memory: "512Mi"
   # You may want to change this to true while testing a new image
   alwaysPullImage: false
   # Controls how agent pods are retained after the Jenkins build completes
