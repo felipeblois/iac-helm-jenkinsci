@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:latest
+FROM jenkins/inbound-agent:4.11.2-4
 
 USER 0
 
