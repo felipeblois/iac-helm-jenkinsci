@@ -6,6 +6,14 @@ RUN apt-get update \
 && apt-get install curl \
 && apt-get install python -y
 
+RUN apt-get  update
+RUN apt-get install -y apt-transport-https ca-certificates curl
+RUN curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+RUN echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list
+RUN apt-get update
+RUN apt-get install -y kubectl
+
+
 RUN curl -L https://download.docker.com/linux/static/stable/x86_64/docker-20.10.7.tgz | tar xvz -C /
 
 RUN export DEBIAN_FRONTEND=noninteractive \

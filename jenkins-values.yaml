@@ -592,7 +592,7 @@ agent:
   maxRequestsPerHostStr: "32"
   namespace:
   image: "feblois/agent"
-  tag: "0.1"
+  tag: "0.2"
   #image: "jenkins/inbound-agent"
   #tag: "4.11.2-4"
   workingDir: "/home/jenkins/agent"
@@ -692,7 +692,7 @@ agent:
   # Max number of spawned agent
   containerCap: 10
   # Pod name
-  podName: "default"
+  podName: "agent"
   # Allows the Pod to remain active for reuse until the configured number of
   # minutes has passed since the last step was executed on it.
   idleMinutes: 0
